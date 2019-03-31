@@ -29,18 +29,11 @@ class App extends Component {
     this.setState({persons:persons})
   }
   render() {
-    const style= {
-      backgroundColor:"green",
-      font:"inherit",
-      border:"1px solid blue",
-      padding:"8px",
-      cursor:"pointer",
-      color:"white"
-    }
     const assignedClasses=[];
+    let btnClass='';
+
     if(this.state.allow){
-      style.backgroundColor="red"
-      
+       btnClass=classes.red
     }
     if(this.state.persons.length<=2){ 
       assignedClasses.push(classes.red)    
@@ -50,10 +43,11 @@ class App extends Component {
     }
 
     return (
-      <div className="classes.App">
+      <div className={classes.App}>
         <h1>Hi pratyush?</h1>
         <p className={assignedClasses.join(' ')}>This is wokring</p>
-        <button style={style} 
+        <button 
+        className={btnClass}
         onClick={this.renderPerson}>Switch Name</button>
         {
           this.state.allow && 
