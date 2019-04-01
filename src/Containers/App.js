@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from "./Person/Person";
-
+import Persons from '../Components/Persons/Persons'
+import CockPit from '../Components/CockPit/CockPit'
 class App extends Component {
   state={
     persons:[
@@ -29,39 +29,20 @@ class App extends Component {
     this.setState({persons:persons})
   }
   render() {
-    const assignedClasses=[];
-    let btnClass='';
-
-    if(this.state.allow){
-       btnClass=classes.red
-    }
-    if(this.state.persons.length<=2){ 
-      assignedClasses.push(classes.red)    
-    }
-    if(this.state.persons.length<=1){
-      assignedClasses.push(classes.bold)
-    }
+    
+   
 
     return (
       <div className={classes.App}>
-        <h1>Hi pratyush?</h1>
-        <p className={assignedClasses.join(' ')}>This is wokring</p>
-        <button 
-        className={btnClass}
-        onClick={this.renderPerson}>Switch Name</button>
+        <CockPit
+         persons={this.state.persons} 
+        allow={this.state.allow}
+        click={this.renderPerson}/>
         {
           this.state.allow && 
-          <div>
-          {this.state.persons.map((person,index)=>{
-         return  <Person
-                 name={person.name}
-                 age={person.age}
-                 key={index}
-                 click={()=>this.deletePrsonHanadler(index)}
-                 changed={(event)=>this.nameChangehnadler(event,index)}
-                 /> 
-          })}
-         </div>
+          <Persons persons={this.state.persons}
+                   clicked={this.deletePrsonHanadler}
+                   changed={this.nameChangehnadler} />
         }
       </div>
     );
