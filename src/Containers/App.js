@@ -3,6 +3,19 @@ import classes from './App.css';
 import Persons from '../Components/Persons/Persons'
 import CockPit from '../Components/CockPit/CockPit'
 class App extends Component {
+
+  constructor(props){
+      super(props)
+      console.log('constructor is executed')
+  }
+  
+  componentWillMount(){
+    console.log('compoenent willMount executed');
+  }
+  componentDidMount(){
+    console.log('compoenent DidMount executed');
+  }
+
   state={
     persons:[
       {name:"pratyush",age:25},
@@ -30,7 +43,7 @@ class App extends Component {
   }
   render() {
     
-   
+   console.log('render is executed')
 
     return (
       <div className={classes.App}>
